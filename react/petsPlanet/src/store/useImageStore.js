@@ -5,19 +5,23 @@ export const useImageStore = create((set, get) => ({
   images: [],
   page: 1,
   loading: false,
-  fetchMore: async () => {
+  fetchMore: async (isRefresh = false) => {
     // 如果还在请求中，不再发起新的请求
-    if (get().loading) return;
+    if (get().loading && !isRefresh) return;
     
     set({ loading: true }); // 请求中
     
     try {
-      const res = await getImages(get().page);
+      // 如果是刷新操作，重置页码为1
+      const currentPage = isRefresh ? 1 : get().page;
+      const res = await getImages(currentPage);
       
       // 更新状态
       set((state) => ({
-        images: [...state.images, ...res.data],
-        page: state.page + 1,
+        // 如果是刷新，替换图片数组；否则追加
+        images: isRefresh ? [...res.data] : [...state.images, ...res.data],
+        // 更新页码
+        page: isRefresh ? 2 : state.page + 1,
         loading: false
       }));
     } catch (error) {

@@ -1,21 +1,12 @@
 // 右上角弹窗
 import styles from './utilityPopup.module.css'
-import { Switch, Divider } from 'react-vant'
-import { Arrow} from '@react-vant/icons';
-import { useState } from 'react';
-import useThemeStore from '@/store/themeStore';
+import { Divider } from 'react-vant'
+import { Arrow } from '@react-vant/icons';
 
 const UtilityPopup = () => {
-    const { isDark, toggleDark } = useThemeStore();
-    const [isLogin, setIsLogin] = useState(false); // 登录状态
-    
-    // 处理深色模式切换
-    const handleThemeToggle = () => {
-        toggleDark();
-    };
     
     return (
-        <div className={`${styles.container} ${isDark ? styles.dark : ''}`}>
+        <div className={styles.container}>
             {/* 设置 */}
             <div className={styles.setting}>
                 <div className={styles.Title}>

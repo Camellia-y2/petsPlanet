@@ -1,11 +1,11 @@
 // AI智能助手
-import { SkinOutlined } from '@ant-design/icons';
 import { chat } from '@/llm';
 import { Toast, Loading, Dialog } from 'react-vant';
 import { useState, useRef, useEffect } from 'react';
 import useTitle from '@/hooks/useTitle';
 import styles from './assistant.module.css'
 import { UserO, Smile, GuideO, DeleteO } from '@react-vant/icons'
+import { BackTop } from '@react-vant/icons';
 import { useNavigate } from 'react-router-dom';
 import formatMarkdownToText from '@/utils/formatMarkdown';
 
@@ -32,6 +32,28 @@ const Assistant = () => {
     const inputRef = useRef(null);
     
     useTitle('AI宠物助手');
+    
+    // 回到顶部功能
+    const [showBackTop, setShowBackTop] = useState(false);
+    
+    // 监听滚动事件，控制回到顶部按钮的显示和隐藏
+    useEffect(() => {
+        const handleScroll = () => {
+            // 当页面滚动超过300px时显示回到顶部按钮
+            setShowBackTop(window.scrollY > 300);
+        };
+        
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+    
+    // 回到顶部的处理函数
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
     
     // 从本地存储加载聊天记录，如果没有则使用默认消息
     const [messages, setMessages] = useState(() => {
@@ -139,6 +161,7 @@ const Assistant = () => {
 
     return (
         <div className={`${styles.container}`}>
+            <BackTop onClick={scrollToTop} className={styles.backTop}/>
             <header className={styles.header}>
                 <h1>AI 宠物助手</h1>
                 <p className={styles.desc}>

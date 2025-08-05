@@ -20,6 +20,27 @@
     position: relative;
 }
 
+.backTop {
+    position: fixed;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    left: 88%;
+    bottom: 13%;
+    background-color: #ffb88c;
+    z-index: 100;
+}
+
+.backTop:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(255, 154, 118, 0.7);
+}
+
+
+.backTop:active {
+  transform: translateY(0);
+}
+
 .header h1 {
     font-size: 38px;
     color: #ff9a76;
