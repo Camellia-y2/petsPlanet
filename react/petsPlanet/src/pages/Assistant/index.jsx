@@ -1,7 +1,7 @@
 // AI智能助手
 import { SkinOutlined } from '@ant-design/icons';
 import { chat } from '@/llm';
-import { Toast, Image, Loading, Button, Dialog } from 'react-vant';
+import { Toast, Loading, Dialog } from 'react-vant';
 import { useState, useRef, useEffect } from 'react';
 import useTitle from '@/hooks/useTitle';
 import styles from './assistant.module.css'
@@ -141,15 +141,6 @@ const Assistant = () => {
         <div className={`${styles.container}`}>
             <header className={styles.header}>
                 <h1>AI 宠物助手</h1>
-                <div className={styles.headerIcons}>
-                    <button 
-                        className={styles.smartClosetButton}
-                        onClick={() => navigate('/smartimage')}
-                    >
-                        <SkinOutlined style={{ marginRight: '5px' }} />
-                        智能衣柜
-                    </button>
-                </div>
                 <p className={styles.desc}>
                     您的宠物好伙伴
                 </p>
