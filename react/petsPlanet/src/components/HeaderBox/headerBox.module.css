@@ -1,0 +1,26 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #ffebcd;
+}
+
+.headerRight{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    justify-content: space-between;
+}
+
+.wapNavIcon, .searchIcon {
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+    color: #333;
+}
+
+.searchIcon{
+    position: relative;
+    top: 8px;
+}

@@ -1,0 +1,63 @@
+.hotTopicsContainer {
+    margin: 20px 35px;
+}
+
+.hotTopicsTitle, .FireIcon {
+    color: #e41c1c;
+}
+
+.FireIcon {
+    font-size: 38px;
+    margin-right: 10px;
+    position: relative;
+    top: 5px;
+}
+
+.hotTopicsTitle {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.hotTopicsList {
+    padding: 0;
+}
+
+.hotTopicItem {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.topicRank {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.topicRank:nth-child(1) {
+    color: #ff4d4f;
+}
+
+.topicRank:nth-child(2), .topicRank:nth-child(3) {
+    color: #ff7a45;
+}
+
+.topicTitle {
+    flex: 1;
+    font-size: 28px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.topicHeat {
+    color: #8a8e99;
+    font-size: 20px;
+    margin-left: 10px;
+}

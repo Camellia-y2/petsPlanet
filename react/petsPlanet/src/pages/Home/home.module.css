@@ -1,0 +1,37 @@
+/* 主容器样式 */
+.container {
+    min-height: 100vh;
+}
+
+/* 头部样式 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #ffebcd;
+}
+
+.headerRight{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    justify-content: space-between;
+}
+
+.ellipsisIcon, .searchIcon {
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+    color: #333;
+}
+
+.searchIcon{
+    position: relative;
+    top: 8px;
+}
+
+/* 内容区域样式 */
+.content {
+    padding: 0 20px 20px;
+}

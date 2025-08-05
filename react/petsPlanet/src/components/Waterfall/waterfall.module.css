@@ -1,0 +1,27 @@
+.wrapper {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fcf7f7;
+}
+
+.column {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+}
+
+.loader {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  color: #999;
+  font-size: 14px;
+  clear: both;
+}
+

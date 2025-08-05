@@ -1,0 +1,104 @@
+.articleList {
+    width: 100%;
+    padding: 16px;
+}
+
+.articleItem {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    border-bottom: 1px solid #eee;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 95%;
+    height: 90%;
+}
+
+.cardHeader {
+    padding: 10px;
+    height: 20%;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+}
+
+.cardBody {
+    padding: 16px;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.desc {
+    font-size: 23px;
+    line-height: 28px;
+    color: #555;
+    margin-bottom: 16px;
+    line-height: 36px;
+    width: 55%; 
+    /*多行文本截断*/
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    display: -webkit-box; 
+    -webkit-line-clamp: 4; /*最多显示4行*/
+    -webkit-box-orient: vertical;
+}
+
+.imageContainer {
+    position: relative;
+    width: 40%; 
+    height: 100%;
+    margin-left: 5px;
+}
+
+/* 占位图，防止重绘 */
+.placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100"><rect width="100%" height="100%" fill="%23f0f0f0"/><text x="50%" y="50%" font-family="Arial" font-size="5" text-anchor="middle" fill="%23999">加载中...</text></svg>');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 1;
+}
+
+.cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+}
+
+.loading {
+    opacity: 0;
+}
+
+.cardFooter {
+    height: 80px;
+    padding: 16px;
+    font-size: 22px;
+    color: #999;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+}
