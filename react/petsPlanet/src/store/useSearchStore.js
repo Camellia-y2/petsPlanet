@@ -13,18 +13,10 @@ const useSearchStore = create((set,get) => {
     return {
         searchHistory,
         suggestList: [], // 返回list
-        hotList:[], // 热门搜索
         setSuggestList: async(keyword)=>{
             const res = await getSuggestList(keyword);
             set({
                 suggestList: res.data
-            })
-        },
-        setHotList: async () => {
-            const res = await getHotList();
-            console.log(res);
-            set({
-                hotList: res.data
             })
         }
     }

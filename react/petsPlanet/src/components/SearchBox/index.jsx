@@ -10,7 +10,7 @@ const SearchBox = (props) => {
     const queryRef = useRef(null);
     const suggestListRef = useRef(null);
     const inputRef = useRef(null);
-    const { hotList, setHotList, suggestList, setSuggestList } = useSearchStore();
+    const { suggestList, setSuggestList } = useSearchStore();
     
     // 控制搜索建议的显示状态
     const [showSuggest, setShowSuggest] = useState(false);

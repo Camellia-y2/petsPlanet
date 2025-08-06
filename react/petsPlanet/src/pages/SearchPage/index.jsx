@@ -13,6 +13,7 @@ import {
 } from '@react-vant/icons'
 import HotTopics from '@/components/HotTopics'
 import useSearchStore from '@/store/useSearchStore'
+
 const SearchPage = () => {
     useTitle('搜索')
     const [text, setText] = useState(''); // 搜索文本
@@ -22,7 +23,7 @@ const SearchPage = () => {
     const [selectedSuggest, setSelectedSuggest] = useState(null); // 存储当前选中的搜索建议项
     
     // 使用搜索全局状态
-    const { suggestList, setSuggestList, hotList, setHotList } = useSearchStore();
+    const { suggestList, setSuggestList } = useSearchStore();
 
     // 从 localStorage 加载搜索历史
     useEffect(() => {
@@ -44,11 +45,6 @@ const SearchPage = () => {
             localStorage.removeItem('searchHistory') // 搜索历史为空时清除
         }
     }, [searchHistory])
-    
-    // 加载热门搜索
-    useEffect(() => {
-        setHotList();
-    }, []);
     
     // 处理搜索
     const handleSearch = (searchText, fromSuggest = false) => {
