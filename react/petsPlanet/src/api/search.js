@@ -5,6 +5,3 @@ export const getSuggestList = (keyword) => {
     return axios.get(`/search?keyword=${keyword}`);
 }
 
-export const getHotList = async () => {
-    return axios.get('/hotlist');
-}
