@@ -28,23 +28,3 @@
     width: 80px;
     font-size: 40px;
 }
-
-/* 深色模式下该组件的样式 */
-.dark {
-  background-color: var(--card-bg);
-  color: var(--text-color);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.dark .Title {
-  color: #aaa;
-}
-
-.dark .Item {
-  color: var(--text-color);
-}
-
-.dark .divider {
-  border-color: var(--border-color);
-}

@@ -25,13 +25,6 @@
     width: 100%;
 }
 
-/* 深色模式下的输入框样式 */
-:global(.dark) .input {
-    background-color: #333;
-    color: var(--text-color);
-    border: 1px solid var(--border-color);
-}
-
 .searchBtn {
     height: 75px;
     border: 0;
@@ -40,12 +33,6 @@
     font-size: 28px;
     color: black;
     background-color: #ffffff;
-}
-
-/* 深色模式下的搜索按钮样式 */
-:global(.dark) .searchBtn {
-    color: var(--text-color);
-    background-color: var(--card-bg);
 }
 
 .closeIcon {
@@ -65,12 +52,6 @@
     z-index: 999;
 }
 
-/* 深色模式下的搜索建议列表样式 */
-:global(.dark) .suggestList {
-    background-color: var(--card-bg);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
-}
-
 .suggestItem {
     padding: 15px 20px;
     display: flex;
@@ -81,25 +62,12 @@
     cursor: pointer;
 }
 
-/* 深色模式下的搜索建议项样式 */
-:global(.dark) .suggestItem {
-    border-bottom: 1px solid var(--border-color);
-}
-
 .suggestItem:hover {
     background-color: #f5f5f5;
 }
 
-:global(.dark) .suggestItem:hover {
-    background-color: #444;
-}
-
 .suggestItem.selected {
     background-color: #e6f7ff;
-}
-
-:global(.dark) .suggestItem.selected {
-    background-color: #1a4a6e;
 }
 
 .suggestItem:last-child {

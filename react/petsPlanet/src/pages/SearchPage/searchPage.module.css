@@ -4,11 +4,6 @@
     padding: 10px 10px;
 }
 
-/* 深色模式下的内容区块样式 */
-:global(.dark) .contentBlock {
-    border-top: 1px solid var(--border-color);
-}
-
 .searchHistoryBlock {
     margin: 0 35px;
 }
@@ -19,11 +14,6 @@
     margin-bottom: 10px;
 }
 
-/* 深色模式下的搜索历史标题样式 */
-:global(.dark) .searchHistoryTitle {
-    color: var(--text-color);
-}
-
 .searchHistoryItem {
     margin: 10px 10px;
     border: 0.5px solid rgba(206, 204, 204, 0.384);
@@ -32,12 +22,6 @@
     display: inline-block;
 }
 
-/* 深色模式下的搜索历史项样式 */
-:global(.dark) .searchHistoryItem {
-    border: 0.5px solid var(--border-color);
-    color: var(--text-color);
-    background-color: var(--card-bg);
-}
 .arrowUp,.arrowDown,.delete{
     top: 8px;
     left:5px;
@@ -55,20 +39,10 @@
     font-size: 28px;
 }
 
-/* 深色模式下的搜索结果区块样式 */
-:global(.dark) .searchResultBlock {
-    color: var(--text-color);
-}
-
 .searchResultTitle {
     font-size: 28px;
     font-weight: 600;
     margin-bottom: 20px;
-}
-
-/* 深色模式下的搜索结果标题样式 */
-:global(.dark) .searchResultTitle {
-    color: var(--text-color);
 }
 
 .searchResultList {
@@ -81,21 +55,10 @@
     font-size: 24px;
 }
 
-/* 深色模式下的搜索结果项样式 */
-:global(.dark) .searchResultItem {
-    border-bottom: 1px solid var(--border-color);
-    color: var(--text-color);
-}
-
 .noResult {
     color: #8a8e99;
     margin-top: 30px;
     text-align: center;
-}
-
-/* 深色模式下的无结果提示样式 */
-:global(.dark) .noResult {
-    color: #aaa;
 }
 
 .hotTopicsBlock {
