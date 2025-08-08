@@ -2,7 +2,6 @@ import useTitle from '@/hooks/useTitle'
 import { useRef, useState } from 'react'
 import styles from './smartimage.module.css'
 import { Loading } from 'react-vant'
-import { Photograph } from '@react-vant/icons'
 
 const SmartImage = () => {
     useTitle('智能衣柜')
@@ -25,18 +24,21 @@ const SmartImage = () => {
     // 图片预览
     const updateImageData = (type) => {
         const input = type === "pet" ? uploadPetRef.current : uploadClothesRef.current
-        if (!input || !input.files || input.files.length === 0) return
+        if (!input || !input.files || input.files.
+            length === 0) return
         const file = input.files[0]
+        // 异步读取文件内容
         const reader = new FileReader()
-        reader.readAsDataURL(file)
+        reader.readAsDataURL(file) // 读取为 Base64 编码的 Data URL
         reader.onload = (e) => {
             if (type === "pet") setPetPreview(e.target.result)
             else setClothesPreview(e.target.result)
         }
     }
 
-    // 上传图片文件，支持宠物和衣服
+    // 将用户选择的图片文件上传到服务器，并返回文件 ID
     const uploadFile = async (type) => {
+        // 表单数据对象，构造 HTTP 请求体
         const formData = new FormData()
         const input = type === "pet" ? uploadPetRef.current : uploadClothesRef.current
         if (!input || !input.files || input.files.length <= 0) return null
@@ -121,7 +123,8 @@ const SmartImage = () => {
             <div className={styles.input}>
                 <div className={styles.fileBox}>
                     <div className={styles.title}>
-                        <h3>宠物图片</h3>
+                        <h3>宠物全身照</h3>
+                        <p>请上传清晰的宠物正面站立照片</p>
                     </div>
                     <input
                         id="selectPetImage"
@@ -139,6 +142,7 @@ const SmartImage = () => {
                 <div className={styles.fileBox}>
                     <div className={styles.title}>
                         <h3>衣服图片</h3>
+                        <p>请上传衣服的正面平铺图</p>
                     </div>
                     <input
                         id="selectClothesImage"
