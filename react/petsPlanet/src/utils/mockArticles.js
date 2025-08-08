@@ -1,8 +1,5 @@
 // 文章模拟生成器
-import { EyeO, LikeO } from '@react-vant/icons';
-import generatePetImages from './mockPetImages';
 
-// 所有标题、描述都只围绕「猫」和「狗」
 const TITLES = [
   '猫咪为什么喜欢钻盒子？',
   '狗狗为什么爱追尾巴？',
@@ -74,7 +71,6 @@ export function generateMockArticle() {
     author: randomItem(AUTHORS),          
     timeAgo: `${randomInt(1, 60)}分钟前`, 
     viewCount: randomInt(10, 999),        
-    // footer JSX 移除，改为原始数据字段
   };
 }
 

@@ -8,8 +8,6 @@ const Waterfall = (props) => {
   const loader = useRef(null);
   const { loading, fetchMore, images } = props;
   const [refreshing, setRefreshing] = useState(false);
-
-  // 新增状态管理两列图片和高度
   const [columns, setColumns] = useState([[], []]);
   const [columnHeights, setColumnHeights] = useState([0, 0]);
 
@@ -61,20 +59,25 @@ const Waterfall = (props) => {
     } finally {
       setRefreshing(false);
     }
-  };
-  
-  // 回到顶部功能
-  const [showBackTop, setShowBackTop] = useState(false);
-  
-  // 监听滚动事件，控制回到顶部按钮的显示和隐藏
+  };  
+
+  // 监听滚动事件
+  const [scrollY, setScrollY] = useState(false);
   useEffect(() => {
+    // 初始检查
+    setScrollY(window.scrollY > 300);
+    
+    // 添加滚动事件监听
     const handleScroll = () => {
-      // 当页面滚动超过300px时显示回到顶部按钮
-      setShowBackTop(window.scrollY > 300);
+      setScrollY(window.scrollY > 300);
     };
     
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    // 清理函数，移除事件监听
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
   
   // 回到顶部的处理函数
@@ -115,8 +118,9 @@ const Waterfall = (props) => {
           {loading ? <Loading type="ball" /> : '加载完成'}
         </div>
       </PullRefresh>
-      
-      <BackTop onClick={scrollToTop} className={styles.backTop}/>
+      {
+        scrollY == true ? <BackTop onClick={scrollToTop} className={styles.backTop} /> : null
+      }
     </>
   );
 };

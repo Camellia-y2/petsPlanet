@@ -1,7 +1,6 @@
 // src/components/ArticleList.jsx
-import { Divider } from 'react-vant';
 import { EyeO, LikeO } from '@react-vant/icons';
-import styles from './articleList.module.css'; // 可选：添加样式
+import styles from './articleList.module.css'; 
 
 const ArticleList = ({ data = [] }) => {
   if (data.length === 0) {

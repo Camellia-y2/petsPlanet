@@ -73,7 +73,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    z-index: 1;
+    z-index: 0; /* 降低z-index值，确保不会遮挡tabbar */
 }
 
 .cover {
@@ -83,7 +83,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 2;
+    z-index: 1; /* 降低z-index值，确保不会遮挡tabbar */
     transition: opacity 0.3s ease;
 }
 

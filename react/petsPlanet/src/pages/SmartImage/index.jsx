@@ -3,7 +3,6 @@ import { useRef, useState } from 'react'
 import styles from './smartimage.module.css'
 import { Loading } from 'react-vant'
 import { Photograph } from '@react-vant/icons'
-import { HomeO } from '@react-vant/icons'
 
 const SmartImage = () => {
     useTitle('智能衣柜')

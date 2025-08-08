@@ -4,7 +4,6 @@ import {
 } from 'zustand'
 import {
     getSuggestList,
-    getHotList
 } from '@/api/search'
 
 const useSearchStore = create((set,get) => {

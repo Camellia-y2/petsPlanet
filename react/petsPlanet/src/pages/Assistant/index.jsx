@@ -27,7 +27,6 @@ const DEFAULT_MESSAGES = [
 ];
 
 const Assistant = () => {
-    const navigate = useNavigate();
     const messagesEndRef = useRef(null);
     const inputRef = useRef(null);
     
@@ -169,15 +168,16 @@ const Assistant = () => {
                 </p>
             </header>
             
+            {/* 清除按钮 */}
+            <div className={styles.clearButtonContainer}>
+                <button 
+                    className={styles.clearButton}
+                    onClick={() => setShowClearModal(true)}
+                >
+                    <DeleteO /> 
+                </button>
+            </div>
             <div className={styles.messagesContainer}>
-                <div className={styles.clearButtonContainer}>
-                    <button 
-                        className={styles.clearButton}
-                        onClick={() => setShowClearModal(true)}
-                    >
-                        <DeleteO /> 
-                    </button>
-                </div>
                 <div className={styles.messages}>
                     {messages.map((item, index) => (
                         <div 
@@ -216,7 +216,7 @@ const Assistant = () => {
                     
                     {isSending && (
                         <div className={styles.loadingContainer}>
-                            <Loading type='spinner' color='#ff9a76' />
+                            <Loading type='spinner' color='#ff9a76' size='18px' />
                         </div>
                     )}
                     
