@@ -122,35 +122,35 @@ const SmartImage = () => {
                 <div className={styles.fileBox}>
                     <div className={styles.title}>
                         <h3>宠物图片</h3>
-                        <div className={styles.photoButton} onClick={() => uploadPetRef.current.click()}>
-                            <Photograph className={styles.photoIcon} />
-                        </div>
                     </div>
                     <input
+                        id="selectPetImage"
                         ref={uploadPetRef}
                         type="file"
                         accept="image/*"
                         onChange={() => updateImageData("pet")}
                         className={styles.fileInput}
                     />
-                    <img src={petPreview} alt="宠物图片预览" className={styles.preview} />
+                    <label htmlFor="selectPetImage" className="upload">
+                        <img src={petPreview} alt="宠物图片预览" className={styles.preview} />
+                    </label>
                 </div>
                 
                 <div className={styles.fileBox}>
                     <div className={styles.title}>
                         <h3>衣服图片</h3>
-                        <div className={styles.photoButton} onClick={() => uploadClothesRef.current.click()}>
-                            <Photograph className={styles.photoIcon} />
-                        </div>
                     </div>
                     <input
+                        id="selectClothesImage"
                         ref={uploadClothesRef}
                         type="file"
                         accept="image/*"
                         onChange={() => updateImageData("clothes")}
                         className={styles.fileInput}
                     />
-                    <img src={clothesPreview} alt="衣服图片预览" className={styles.preview} />
+                    <label htmlFor="selectClothesImage" className="upload">
+                        <img src={clothesPreview} alt="衣服图片预览" className={styles.preview} />
+                    </label>
                 </div>
                 
                 <div className={styles.generate}>
@@ -168,6 +168,7 @@ const SmartImage = () => {
             <div className={styles.output}>
                 <div className={styles.generated}>
                     {imgUrl ? (
+                        
                         <img src={imgUrl} alt="生成效果预览" className={styles.resultImg} />
                     ) : status ? (
                         <div className={styles.status}>{status}</div>

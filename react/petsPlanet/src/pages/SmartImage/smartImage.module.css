@@ -78,34 +78,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-}
-
-.photoButton {
-    width: 55px;
-    height: 55px;
-    background-color: #ff9a76;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 15px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(255, 154, 118, 0.3);
-    transition: all 0.2s ease;
-}
-
-.photoButton:hover {
-    transform: scale(1.05);
-    background-color: #ff8c61;
-}
-
-.photoButton:active {
-    transform: scale(0.95);
-}
-
-.photoIcon {
-    font-size: 28px;
-    color: white;
+    margin-bottom: 12px;
 }
 
 .fileInput {
