@@ -1,6 +1,6 @@
 import useTitle from '@/hooks/useTitle'
 import { useRef, useState } from 'react'
-import styles from './smartimage.module.css'
+import styles from './smartImage.module.css'
 import { Loading } from 'react-vant'
 
 const SmartImage = () => {
