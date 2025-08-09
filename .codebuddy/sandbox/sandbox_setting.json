@@ -1,0 +1,20 @@
+{
+  "path": "d:\\作业\\lvmeng\\MyProjects\\petsPlanet\\dist",
+  "desc": "这是一个名为\"毛孩星球\"的移动端应用，提供宠物百科知识、AI智能助手、智能图像处理等功能，帮助用户更好地了解和照顾自己的宠物。使用 React、Vite 等技术栈构建。",
+  "id": "3e0d74ba2eae4d77bafc74c1d03d14d6",
+  "data": {
+    "spaceKey": "3e0d74ba2eae4d77bafc74c1d03d14d6",
+    "connections": {
+      "webIDE": "https://3e0d74ba2eae4d77bafc74c1d03d14d6.ap-singapore.cloudstudio.club",
+      "preview": "",
+      "api": "https://3e0d74ba2eae4d77bafc74c1d03d14d6--api.ap-singapore.cloudstudio.club",
+      "pty": "https://3e0d74ba2eae4d77bafc74c1d03d14d6--pty.ap-singapore.cloudstudio.club"
+    }
+  },
+  "config": {
+    "api": "https://3e0d74ba2eae4d77bafc74c1d03d14d6--api.ap-singapore.cloudstudio.club",
+    "pty": "https://3e0d74ba2eae4d77bafc74c1d03d14d6--pty.ap-singapore.cloudstudio.club",
+    "region": "ap-shanghai",
+    "spaceKey": "3e0d74ba2eae4d77bafc74c1d03d14d6"
+  }
+}

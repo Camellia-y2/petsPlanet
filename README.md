@@ -195,45 +195,6 @@ pnpm preview
 npm run preview
 ```
 
-## 项目部署
-
-本项目使用Vercel进行部署，实现了自动化CI/CD流程。
-
-### Vercel部署步骤
-
-1. **创建Vercel账号**
-   - 访问 [Vercel官网](https://vercel.com) 注册账号
-   - 可以使用GitHub、GitLab或Bitbucket账号直接登录
-
-2. **导入项目**
-   - 在Vercel控制台点击"Import Project"
-   - 选择"Import Git Repository"并连接到您的代码仓库
-   - 选择包含本项目的仓库
-
-3. **配置部署选项**
-   - **框架预设**: 选择Vite
-   - **构建命令**: `npm run build` 或 `pnpm build`
-   - **输出目录**: `dist`
-   - **环境变量**: 添加必要的环境变量(如API密钥等)
-
-4. **部署项目**
-   - 点击"Deploy"按钮开始部署
-   - Vercel会自动构建并部署应用
-
-### 自动部署
-
-Vercel提供了与Git仓库的集成，实现了以下自动化流程：
-
-- **自动预览部署**: 每个Pull Request都会生成一个预览URL
-- **自动生产部署**: 当代码合并到主分支时自动部署到生产环境
-- **回滚功能**: 可以快速回滚到之前的部署版本
-
-### 自定义域名
-
-1. 在Vercel项目设置中添加自定义域名
-2. 按照Vercel提供的说明配置DNS记录
-3. 等待DNS生效后，您的应用将通过自定义域名访问
-
 ### 性能优化
 
 Vercel提供了多项性能优化功能：
