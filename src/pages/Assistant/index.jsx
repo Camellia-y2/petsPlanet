@@ -1,6 +1,6 @@
 // AI智能助手
 import { chat } from '@/llm';
-import { Toast, Loading, Dialog, Skeleton } from 'react-vant';
+import { Toast, Loading, Dialog } from 'react-vant';
 import { useState, useRef, useEffect } from 'react';
 import useTitle from '@/hooks/useTitle';
 import styles from './assistant.module.css'
@@ -31,9 +31,6 @@ const Assistant = () => {
     const inputRef = useRef(null);
     
     useTitle('AI宠物助手');
-    
-    // 骨架屏加载状态
-    const [loading, setLoading] = useState(true);
     
     // 回到顶部功能
     const [showBackTop, setShowBackTop] = useState(false);
@@ -71,14 +68,6 @@ const Assistant = () => {
     const [isSending, setIsSending] = useState(false);
     const [showClearModal, setShowClearModal] = useState(false);
     
-    // 模拟加载过程
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setLoading(false);
-        }, 1000);
-        
-        return () => clearTimeout(timer);
-    }, []);
     
     // 自动滚动到最新消息
     const scrollToBottom = () => {
@@ -190,39 +179,8 @@ const Assistant = () => {
                 </button>
             </div>
             <div className={styles.messagesContainer}>
-                {loading ? (
-                    // 骨架屏
-                    <div className={styles.skeletonContainer}>
-                        <div className={styles.messageWrapper} style={{ justifyContent: 'flex-start' }}>
-                            <div className={`${styles.avatar} ${styles.assistantAvatar}`}>
-                                <Skeleton round className={styles.skeletonAvatar} />
-                            </div>
-                            <div className={styles.messageLeft}>
-                                <Skeleton title row={2} className={styles.skeletonMessage} />
-                            </div>
-                        </div>
-                        
-                        <div className={styles.messageWrapper} style={{ justifyContent: 'flex-end' }}>
-                            <div className={styles.messageRight}>
-                                <Skeleton title row={1} className={styles.skeletonMessage} />
-                            </div>
-                            <div className={`${styles.avatar} ${styles.userAvatar}`}>
-                                <Skeleton round className={styles.skeletonAvatar} />
-                            </div>
-                        </div>
-                        
-                        <div className={styles.messageWrapper} style={{ justifyContent: 'flex-start' }}>
-                            <div className={`${styles.avatar} ${styles.assistantAvatar}`}>
-                                <Skeleton round className={styles.skeletonAvatar} />
-                            </div>
-                            <div className={styles.messageLeft}>
-                                <Skeleton title row={3} className={styles.skeletonMessage} />
-                            </div>
-                        </div>
-                    </div>
-                ) : (
-                    <div className={styles.messages}>
-                        {messages.map((item, index) => (
+                <div className={styles.messages}>
+                    {messages.map((item, index) => (
                             <div 
                                 key={index} 
                                 className={styles.messageWrapper}
@@ -265,7 +223,6 @@ const Assistant = () => {
                         
                         <div ref={messagesEndRef} />
                     </div>
-                )}
                 
                 <div className={styles.inputArea}>
                     <input

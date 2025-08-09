@@ -1,4 +1,5 @@
 import axios from "./config";
+import { envConfig } from "./config";
 import Mock from 'mockjs';
 
 // 宠物类型列表
@@ -45,21 +46,29 @@ const generatePetImages = (page, pageSize = 10) => {
   });
 };
 
-// 判断是否为生产环境
-const isProduction = window.location.hostname !== 'localhost';
-
 // 获取图片列表
 export const getImages = async (page) => {
-  if (isProduction) {
-    // 在生产环境中使用模拟数据
+  // 在 Vercel 环境或生产环境中使用模拟数据
+  if (envConfig.isVercel || envConfig.isProduction) {
+    console.log('使用模拟数据生成图片');
     return {
       code: 0,
       data: generatePetImages(page)
     };
   } else {
     // 在开发环境中使用API
-    return axios.get('/images', {
-      params: {page}
-    });
+    try {
+      console.log('使用API获取图片');
+      return await axios.get('/images', {
+        params: {page}
+      });
+    } catch (error) {
+      console.error('API请求失败，使用模拟数据', error);
+      // 如果API请求失败，也使用模拟数据
+      return {
+        code: 0,
+        data: generatePetImages(page)
+      };
+    }
   }
 };
