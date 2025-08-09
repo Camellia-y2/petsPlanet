@@ -2,9 +2,12 @@
 import styles from './utilityPopup.module.css'
 import { Divider } from 'react-vant'
 import { Arrow } from '@react-vant/icons';
+import { useUserStore } from '@/store/useUserStore';
+import { useNavigate } from 'react-router-dom';
 
 const UtilityPopup = () => {
-    
+    const { isLogin, logout} = useUserStore();
+    const navigate = useNavigate();
     return (
         <div className={styles.container}>
             {/* 设置 */}
@@ -15,9 +18,29 @@ const UtilityPopup = () => {
                 <div className={styles.Item}>
                     个人中心
                 </div>
-                <div className={styles.Item}>
-                    登录
-                </div>
+                {
+                    isLogin ? (
+                        <div className={styles.Item}>
+                            <button onClick={()=>{
+                                console.log('登出');
+                                if (window.confirm('您确定要退出登录吗？')) {
+                                    logout();
+                                    console.log('退出成功');
+                                }
+                            }}>退出登录</button>
+                        </div>
+                    ) : (
+                        <div className={styles.Item}>
+                            <button onClick={() => { 
+                                console.log('登录');
+                                setTimeout(() => {
+                                    // 登录后跳转页面
+                                navigate('/login');
+                                }, 300);
+                            }}>登录</button>
+                        </div>
+                    )
+                }
             </div>
             <Divider className={styles.divider}/>
             {/* 访问方式 */}

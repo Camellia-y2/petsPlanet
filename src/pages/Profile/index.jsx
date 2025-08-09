@@ -14,8 +14,10 @@ import {
   FaHeartbeat,
 } from 'react-icons/fa';
 import avatar from '@/assets/avatar/avatar1.jpg'
+import { useUserStore } from '@/store/useUserStore';
 
 const Profile = () => {
+  const { logout } = useUserStore()
   const [userInfo, setUserInfo] = useState({
     nickname: '米妮',
     level: '5级',
@@ -74,6 +76,11 @@ const Profile = () => {
       name: '上传头像',
       color: '#123123',
       type: 2
+    },
+    {
+      name: '退出登录',
+      color: '#123123',
+      type: 0
     }
   ]
 
@@ -90,6 +97,9 @@ const Profile = () => {
     }else if(e.type===2){
       //图片上传
 
+    }else if(e.type===0){
+      //退出登录
+      logout();
     }
   }
   return (

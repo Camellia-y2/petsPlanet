@@ -1,0 +1,121 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  background: linear-gradient(135deg, #ffd6d6, #ffe9d6, #fff7d6);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.loginCard {
+  width: 100%;
+  height: 660px;
+  max-width: 600px;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 24px rgba(255, 154, 118, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.loginCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(255, 154, 118, 0.3);
+}
+
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 15px;
+  padding: 5px;
+  background-color: white;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.title {
+  font-size: 38px;
+  font-weight: bold;
+  color: #ff9a76;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(134, 105, 105, 0.28);
+  letter-spacing: 0.1rem;
+}
+
+.formContainer {
+  width: 100%;
+}
+
+.formItem {
+  margin-bottom: 20px;
+}
+
+.input {
+  height: 80px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.input:hover, .input:focus {
+  box-shadow: 0 4px 12px rgba(255, 154, 118, 0.2);
+  border-color: #ff9a76;
+}
+
+.inputIcon {
+  color: #ff9a76;
+}
+
+.loginBtn {
+  height: 80px;
+  border-radius: 10px;
+  margin-top: 10px;
+  background-color: #ff9a76;
+  border-color: #ff9a76;
+  font-size: 28px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(255, 154, 118, 0.3);
+  transition: all 0.3s ease;
+}
+
+.loginBtn:hover {
+  background-color: #ff8a5e;
+  border-color: #ff8a5e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(255, 154, 118, 0.4);
+}
+
+.tips {
+  margin-top: 20px;
+  text-align: center;
+  color: #888;
+  font-size: 20px;
+  padding: 10px;
+}

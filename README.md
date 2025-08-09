@@ -116,6 +116,9 @@ pnpm i vite-plugin-mock mockjs postcss-pxtorem -D
 - 收藏内容管理
 - 历史记录查看
 
+### 6. 登录
+- 用户登录
+
 ## 项目亮点与难点
 
 ### 1. 移动端适配

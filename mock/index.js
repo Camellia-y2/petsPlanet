@@ -1,4 +1,8 @@
 import Mock from 'mockjs';
+import jwt from 'jsonwebtoken';
+
+// 加盐
+const secret = '!&124coddefgg';
 
 // 宠物类型列表
 const petTypes = ['猫咪', '狗狗', '英国短毛猫', '泰迪', '土狗', '折耳猫', '布偶猫', '拉布拉多', '哈士奇'];
@@ -44,8 +48,61 @@ const generatePetImages = (page, pageSize = 10) => {
   });
 };
 
+
+// JWT 生成函数
+const generateToken = (payload) => {
+  try {
+    return jwt.sign(payload, secret, { expiresIn: 86400 }); // 24小时过期
+  } catch (error) {
+    console.error('Token 生成错误:', error);
+    return null;
+  }
+};
+
 // 模拟API接口
 export default [
+  { 
+    url: '/petsPlanet/login', // 路径
+    method: 'post', // 请求方式
+    timeout: 2000, // 请求耗时
+    response: (req, res) => { // 响应数据
+        const { username, password } = req.body // 解构赋值 拿到数据
+        if(username !== "admin" || password !== "123456"){
+            return {
+                code: 1,
+                msg: "用户名或密码错误"
+            }
+        }
+        try {
+            // 生成token 颁发令牌
+            const token = generateToken({
+                id: "001",
+                username: "admin"
+            });
+            
+            // 确保 token 格式正确
+            const tokenStr = 'mock_jwt_token_' + JSON.stringify({id: "001", username: "admin"});
+            
+            console.log('mock token:', tokenStr);
+            
+            // 确保返回格式与 useUserStore.js 中期望的一致
+            return {
+                code: 0,
+                token: tokenStr,
+                data: {
+                    id: "001",
+                    username: "admin"
+                }
+            };
+        } catch (error) {
+            console.error('登录响应生成错误:', error);
+            return {
+                code: 1,
+                msg: "服务器内部错误"
+            };
+        }
+    }
+  } ,
   {
     url: '/petsPlanet/images',
     method: 'get',

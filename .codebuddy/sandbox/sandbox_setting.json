@@ -1,20 +1,20 @@
 {
   "path": "d:\\作业\\lvmeng\\MyProjects\\petsPlanet\\dist",
   "desc": "这是一个名为\"毛孩星球\"的移动端应用，提供宠物百科知识、AI智能助手、智能图像处理等功能，帮助用户更好地了解和照顾自己的宠物。使用 React、Vite 等技术栈构建。",
-  "id": "3e0d74ba2eae4d77bafc74c1d03d14d6",
+  "id": "d84550d797624a868debb1a4f3defa98",
   "data": {
-    "spaceKey": "3e0d74ba2eae4d77bafc74c1d03d14d6",
+    "spaceKey": "d84550d797624a868debb1a4f3defa98",
     "connections": {
-      "webIDE": "https://3e0d74ba2eae4d77bafc74c1d03d14d6.ap-singapore.cloudstudio.club",
-      "preview": "",
-      "api": "https://3e0d74ba2eae4d77bafc74c1d03d14d6--api.ap-singapore.cloudstudio.club",
-      "pty": "https://3e0d74ba2eae4d77bafc74c1d03d14d6--pty.ap-singapore.cloudstudio.club"
+      "webIDE": "https://d84550d797624a868debb1a4f3defa98.ap-singapore.cloudstudio.club",
+      "preview": "https://d84550d797624a868debb1a4f3defa98--{port}.ap-singapore.cloudstudio.club",
+      "api": "https://d84550d797624a868debb1a4f3defa98--api.ap-singapore.cloudstudio.club",
+      "pty": "https://d84550d797624a868debb1a4f3defa98--pty.ap-singapore.cloudstudio.club"
     }
   },
   "config": {
-    "api": "https://3e0d74ba2eae4d77bafc74c1d03d14d6--api.ap-singapore.cloudstudio.club",
-    "pty": "https://3e0d74ba2eae4d77bafc74c1d03d14d6--pty.ap-singapore.cloudstudio.club",
+    "api": "https://d84550d797624a868debb1a4f3defa98--api.ap-singapore.cloudstudio.club",
+    "pty": "https://d84550d797624a868debb1a4f3defa98--pty.ap-singapore.cloudstudio.club",
     "region": "ap-shanghai",
-    "spaceKey": "3e0d74ba2eae4d77bafc74c1d03d14d6"
+    "spaceKey": "d84550d797624a868debb1a4f3defa98"
   }
 }
