@@ -5,6 +5,7 @@ import { useUserStore } from '@/store/useUserStore';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './login.module.css';
 import logo2 from '@/assets/logo2.png';
+import { ArrowLeft } from '@react-vant/icons';
 
 // memo路由切换时性能优化，避免父组件SubLayout重新渲染时被影响
 const Login = memo(() => {
@@ -41,6 +42,9 @@ const Login = memo(() => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.backButton} onClick={() => navigate('/home')}>
+        <ArrowLeft />
+      </div>
       <div className={styles.loginCard}>
         <div className={styles.logoContainer}>
           <img src={logo2} alt="毛孩星球" className={styles.logo} />
