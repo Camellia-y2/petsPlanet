@@ -122,6 +122,36 @@
   font-weight: 500;
 }
 
+/* 骨架屏样式 */
+.skeletonAvatar {
+  width: 100px !important;
+  height: 100px !important;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.skeletonTitle {
+  width: 200px !important;
+  height: 24px !important;
+  margin-bottom: 10px;
+}
+
+.skeletonText {
+  width: 250px !important;
+}
+
+.skeletonSectionTitle {
+  width: 120px !important;
+  height: 28px !important;
+  margin-bottom: 16px;
+}
+
+.skeletonIconGrid {
+  width: 100% !important;
+  height: 80px !important;
+  margin-bottom: 10px;
+}
+
 /* 响应式：小屏幕下改为 2 列 */
 @media (max-width: 480px) {
   .iconGrid {

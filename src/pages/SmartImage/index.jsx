@@ -1,7 +1,7 @@
 import useTitle from '@/hooks/useTitle'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import styles from './smartImage.module.css'
-import { Loading } from 'react-vant'
+import { Loading, Skeleton } from 'react-vant'
 
 const SmartImage = () => {
     useTitle('智能衣柜')
@@ -17,6 +17,16 @@ const SmartImage = () => {
     const [imgUrl, setImgUrl] = useState('')
     const [status, setStatus] = useState('')
     const [isGenerating, setIsGenerating] = useState(false)
+    const [loading, setLoading] = useState(true)
+    
+    // 模拟加载过程
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 1000);
+        
+        return () => clearTimeout(timer);
+    }, []);
 
     // 默认使用写实风格
     const style_en = "realistic"
@@ -120,69 +130,102 @@ const SmartImage = () => {
                 </p>
             </header>
             
-            <div className={styles.input}>
-                <div className={styles.fileBox}>
-                    <div className={styles.title}>
-                        <h3>宠物全身照</h3>
-                        <p>请上传清晰的宠物正面站立照片</p>
-                    </div>
-                    <input
-                        id="selectPetImage"
-                        ref={uploadPetRef}
-                        type="file"
-                        accept="image/*"
-                        onChange={() => updateImageData("pet")}
-                        className={styles.fileInput}
-                    />
-                    <label htmlFor="selectPetImage" className="upload">
-                        <img src={petPreview} alt="宠物图片预览" className={styles.preview} />
-                    </label>
-                </div>
-                
-                <div className={styles.fileBox}>
-                    <div className={styles.title}>
-                        <h3>衣服图片</h3>
-                        <p>请上传衣服的正面平铺图</p>
-                    </div>
-                    <input
-                        id="selectClothesImage"
-                        ref={uploadClothesRef}
-                        type="file"
-                        accept="image/*"
-                        onChange={() => updateImageData("clothes")}
-                        className={styles.fileInput}
-                    />
-                    <label htmlFor="selectClothesImage" className="upload">
-                        <img src={clothesPreview} alt="衣服图片预览" className={styles.preview} />
-                    </label>
-                </div>
-                
-                <div className={styles.generate}>
-                    <button 
-                        className={styles.button} 
-                        onClick={generate}
-                        disabled={isGenerating}
-                    >
-                        {isGenerating ? <Loading type="spinner" color="#fff" /> : ''} 
-                        {isGenerating ? '生成中...' : '生成'}
-                    </button>
-                </div>
-            </div>
-            
-            <div className={styles.output}>
-                <div className={styles.generated}>
-                    {imgUrl ? (
-                        
-                        <img src={imgUrl} alt="生成效果预览" className={styles.resultImg} />
-                    ) : status ? (
-                        <div className={styles.status}>{status}</div>
-                    ) : (
-                        <div className={styles.emptyState}>
-                            <p>上传图片并点击生成按钮</p>
+            {loading ? (
+                // 骨架屏
+                <div className={styles.skeletonContainer}>
+                    <div className={styles.input}>
+                        <div className={styles.fileBox}>
+                            <div className={styles.title}>
+                                <Skeleton title className={styles.skeletonTitle} />
+                                <Skeleton row={1} className={styles.skeletonText} />
+                            </div>
+                            <Skeleton className={styles.skeletonPreview} />
                         </div>
-                    )}
+                        
+                        <div className={styles.fileBox}>
+                            <div className={styles.title}>
+                                <Skeleton title className={styles.skeletonTitle} />
+                                <Skeleton row={1} className={styles.skeletonText} />
+                            </div>
+                            <Skeleton className={styles.skeletonPreview} />
+                        </div>
+                        
+                        <div className={styles.generate}>
+                            <Skeleton className={styles.skeletonButton} />
+                        </div>
+                    </div>
+                    
+                    <div className={styles.output}>
+                        <Skeleton className={styles.skeletonOutput} />
+                    </div>
                 </div>
-            </div>
+            ) : (
+                <>
+                    <div className={styles.input}>
+                        <div className={styles.fileBox}>
+                            <div className={styles.title}>
+                                <h3>宠物全身照</h3>
+                                <p>请上传清晰的宠物正面站立照片</p>
+                            </div>
+                            <input
+                                id="selectPetImage"
+                                ref={uploadPetRef}
+                                type="file"
+                                accept="image/*"
+                                onChange={() => updateImageData("pet")}
+                                className={styles.fileInput}
+                            />
+                            <label htmlFor="selectPetImage" className="upload">
+                                <img src={petPreview} alt="宠物图片预览" className={styles.preview} />
+                            </label>
+                        </div>
+                        
+                        <div className={styles.fileBox}>
+                            <div className={styles.title}>
+                                <h3>衣服图片</h3>
+                                <p>请上传衣服的正面平铺图</p>
+                            </div>
+                            <input
+                                id="selectClothesImage"
+                                ref={uploadClothesRef}
+                                type="file"
+                                accept="image/*"
+                                onChange={() => updateImageData("clothes")}
+                                className={styles.fileInput}
+                            />
+                            <label htmlFor="selectClothesImage" className="upload">
+                                <img src={clothesPreview} alt="衣服图片预览" className={styles.preview} />
+                            </label>
+                        </div>
+                        
+                        <div className={styles.generate}>
+                            <button 
+                                className={styles.button} 
+                                onClick={generate}
+                                disabled={isGenerating}
+                            >
+                                {isGenerating ? <Loading type="spinner" color="#fff" /> : ''} 
+                                {isGenerating ? '生成中...' : '生成'}
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div className={styles.output}>
+                        <div className={styles.generated}>
+                            {imgUrl ? (
+                                
+                                <img src={imgUrl} alt="生成效果预览" className={styles.resultImg} />
+                            ) : status ? (
+                                <div className={styles.status}>{status}</div>
+                            ) : (
+                                <div className={styles.emptyState}>
+                                    <p>上传图片并点击生成按钮</p>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </>
+            )}
         </div>
     )
 }

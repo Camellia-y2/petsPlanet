@@ -46,7 +46,10 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   return (
     <>
-     <Suspense fallback={<Spin />}>
+     <Suspense fallback={
+      <Spin 
+        style={{ height:'100vh', display:'flex', alignItems: 'center', justifyContent:'center'}} />
+      }>
       <Routes>
         {/* 登录页面 - 不带TabBar */}
         <Route path='/login' element={<Login />} />

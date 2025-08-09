@@ -1,7 +1,7 @@
 // 个人中心
 import styles from './profile.module.css';
 import useTitle from '@/hooks/useTitle';
-import { ActionSheet } from 'react-vant';
+import { ActionSheet, Skeleton } from 'react-vant';
 import { useState, useEffect } from 'react';
 import { generateAvatar } from '@/llm';
 import {
@@ -18,6 +18,7 @@ import { useUserStore } from '@/store/useUserStore';
 
 const Profile = () => {
   const { logout } = useUserStore()
+  const [loading, setLoading] = useState(true);
   const [userInfo, setUserInfo] = useState({
     nickname: '米妮',
     level: '5级',
@@ -86,6 +87,15 @@ const Profile = () => {
 
   useTitle('个人中心')
   
+  // 模拟加载过程
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleAction = async (e) => {
     if(e.type===1){
       //AI生成头像
@@ -104,56 +114,94 @@ const Profile = () => {
   }
   return (
     <div className={`${styles.container} font-f`}>
-      {/* 头部信息 */}
-      <header className={styles.header}>
-        <div className={styles.headerContent}>
-          <img src={userInfo.avatar} alt="头像" className={styles.avatar} onClick={() => setShowActionSheet(true)} />
-          <h1 className={styles.headerTitle}>昵称：{userInfo.nickname}</h1>
-          <p className={styles.headerSubtitle}>签名：{userInfo.slogan}</p>
-          <p className={styles.headerLevel}>等级：铲屎官{userInfo.level}</p>
-        </div>
-      </header>
+      {loading ? (
+        // 骨架屏
+        <>
+          <header className={styles.header}>
+            <div className={styles.headerContent}>
+              <Skeleton round className={styles.skeletonAvatar} />
+              <Skeleton title className={styles.skeletonTitle} />
+              <Skeleton row={2} className={styles.skeletonText} />
+            </div>
+          </header>
 
-      <main className={styles.main}>
-        {/* 我的日常 */}
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>我的日常</h2>
-          <div className={styles.iconGrid}>
-            {myDay.map((item, index) => (
-              <div className={styles.iconItem} key={index}>
-                {item.icon}
-                <p>{item.name}</p>
+          <main className={styles.main}>
+            <section className={styles.section}>
+              <Skeleton title className={styles.skeletonSectionTitle} />
+              <div className={styles.iconGrid}>
+                <Skeleton row={1} className={styles.skeletonIconGrid} />
               </div>
-            ))}
-          </div>
-        </section>
+            </section>
+            
+            <section className={styles.section}>
+              <Skeleton title className={styles.skeletonSectionTitle} />
+              <div className={styles.iconGrid}>
+                <Skeleton row={2} className={styles.skeletonIconGrid} />
+              </div>
+            </section>
+            
+            <section className={styles.section}>
+              <Skeleton title className={styles.skeletonSectionTitle} />
+              <div className={styles.iconGrid}>
+                <Skeleton row={1} className={styles.skeletonIconGrid} />
+              </div>
+            </section>
+          </main>
+        </>
+      ) : (
+        <>
+          {/* 头部信息 */}
+          <header className={styles.header}>
+            <div className={styles.headerContent}>
+              <img src={userInfo.avatar} alt="头像" className={styles.avatar} onClick={() => setShowActionSheet(true)} />
+              <h1 className={styles.headerTitle}>昵称：{userInfo.nickname}</h1>
+              <p className={styles.headerSubtitle}>签名：{userInfo.slogan}</p>
+              <p className={styles.headerLevel}>等级：铲屎官{userInfo.level}</p>
+            </div>
+          </header>
 
-        {/* 我的宠物 */}
-        <section className={styles.section}>
-        <h2 className={styles.sectionTitle}>我的宠物</h2>
-        <div className={styles.iconGrid}>
-            {myPet.map((item, index) => (
-              <div className={styles.iconItem} key={index}>
-                {item.icon}
-                <p>{item.name}</p>
+          <main className={styles.main}>
+            {/* 我的日常 */}
+            <section className={styles.section}>
+              <h2 className={styles.sectionTitle}>我的日常</h2>
+              <div className={styles.iconGrid}>
+                {myDay.map((item, index) => (
+                  <div className={styles.iconItem} key={index}>
+                    {item.icon}
+                    <p>{item.name}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-        </div>
-        </section>
+            </section>
 
-        {/* 其他 */}
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>其他</h2>
-          <div className={styles.iconGrid}>
-            {other.map((item, index) => (
-              <div className={styles.iconItem} key={index}>
-                {item.icon}
-                <p>{item.name}</p>
+            {/* 我的宠物 */}
+            <section className={styles.section}>
+            <h2 className={styles.sectionTitle}>我的宠物</h2>
+            <div className={styles.iconGrid}>
+                {myPet.map((item, index) => (
+                  <div className={styles.iconItem} key={index}>
+                    {item.icon}
+                    <p>{item.name}</p>
+                  </div>
+                ))}
+            </div>
+            </section>
+
+            {/* 其他 */}
+            <section className={styles.section}>
+              <h2 className={styles.sectionTitle}>其他</h2>
+              <div className={styles.iconGrid}>
+                {other.map((item, index) => (
+                  <div className={styles.iconItem} key={index}>
+                    {item.icon}
+                    <p>{item.name}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </section>
-      </main>
+            </section>
+          </main>
+        </>
+      )}
 
       <ActionSheet
         visible={showActionSheet}

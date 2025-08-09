@@ -16,6 +16,11 @@ export const useUserStore = create((set) => ({
             const response = await doLogin({ username, password });
             console.log('useUserStore: 登录响应:', response);
             
+            // 添加防御性检查
+            if (!response) {
+                throw new Error('登录响应为空');
+            }
+            
             if (response.code === 1) {
                 console.log('登录失败:', response.msg);
                 throw new Error(response.msg || '登录失败');

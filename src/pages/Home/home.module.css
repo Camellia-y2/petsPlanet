@@ -35,3 +35,16 @@
 .content {
     padding: 0 20px 20px;
 }
+
+/* 骨架屏容器样式 */
+.skeletonContainer {
+    padding: 16px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-top: 16px;
+}
+
+.skeletonContainer > div {
+    margin-bottom: 20px;
+}
+

@@ -13,6 +13,7 @@ import {
 } from '@react-vant/icons'
 import HotTopics from '@/components/HotTopics'
 import useSearchStore from '@/store/useSearchStore'
+import { Skeleton } from 'react-vant'
 
 const SearchPage = () => {
     useTitle('搜索')
@@ -21,6 +22,7 @@ const SearchPage = () => {
     const [searchHistory, setSearchHistory] = useState([]); // 搜索历史
     const [isHistoryExpanded, setIsHistoryExpanded] = useState(true) // 控制展开/收起
     const [selectedSuggest, setSelectedSuggest] = useState(null); // 存储当前选中的搜索建议项
+    const [loading, setLoading] = useState(true); // 页面加载状态
     
     // 使用搜索全局状态
     const { suggestList, setSuggestList } = useSearchStore();
@@ -35,6 +37,11 @@ const SearchPage = () => {
                 setSearchHistory([])
             }
         }
+        
+        // 模拟数据加载
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000)
     }, [])
 
     // 保存搜索历史到 localStorage
@@ -102,7 +109,15 @@ const SearchPage = () => {
             />
 
             {/* 内容区域 */}
-            {!isSending ? (
+            {loading ? (
+                <div className={styles.skeletonContainer}>
+                    <Skeleton title row={1} />
+                    <div className={styles.skeletonHistory}>
+                        <Skeleton title row={2} />
+                    </div>
+                    <Skeleton title row={5} />
+                </div>
+            ) : !isSending ? (
                 <>
                     {/* 搜索历史 */}
                     <div className={`${styles.searchHistoryBlock} ${styles.contentBlock}`}>

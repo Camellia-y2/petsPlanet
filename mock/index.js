@@ -80,15 +80,12 @@ export default [
                 username: "admin"
             });
             
-            // 确保 token 格式正确
-            const tokenStr = 'mock_jwt_token_' + JSON.stringify({id: "001", username: "admin"});
-            
-            console.log('mock token:', tokenStr);
+            console.log('mock token:', token);
             
             // 确保返回格式与 useUserStore.js 中期望的一致
             return {
                 code: 0,
-                token: tokenStr,
+                token: token,
                 data: {
                     id: "001",
                     username: "admin"

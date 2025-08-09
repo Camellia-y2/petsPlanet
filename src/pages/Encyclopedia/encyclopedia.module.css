@@ -22,3 +22,14 @@
 .swiper {
     height: 350px;
 }
+
+.skeletonContainer {
+    padding: 16px;
+    background-color: #fff;
+    margin-top: 16px;
+}
+
+.skeletonContainer > div {
+    margin-bottom: 20px;
+}
+

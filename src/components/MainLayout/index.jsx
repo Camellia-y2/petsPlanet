@@ -29,7 +29,8 @@ const tabs = [
     { icon: <Friends />, title: '个人中心', path: '/profile'}
 ]
 
-// 只有在路由变化时才需要重新渲染
+// 当应用中的其他状态（如数据加载状态、表单状态等）发生变化时，
+// 如果路由没有变化，MainLayout 不需要重新渲染
 const MainLayout = memo(() => {
     const [active, setActive] = useState(0)
     const navigate = useNavigate()
