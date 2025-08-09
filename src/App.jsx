@@ -53,6 +53,7 @@ function App() {
         
         {/* 带有 tabBar 的layout */}
         <Route element={
+          // 所有使用 MainLayout 的路由（包括首页、百科、个人中心、AI助手和智能衣柜）都会经过路由守卫的检查。
           <ProtectedRoute>
             <MainLayout />
           </ProtectedRoute>

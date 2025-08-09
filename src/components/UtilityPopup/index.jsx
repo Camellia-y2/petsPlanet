@@ -4,8 +4,9 @@ import { Divider } from 'react-vant'
 import { Arrow } from '@react-vant/icons';
 import { useUserStore } from '@/store/useUserStore';
 import { useNavigate } from 'react-router-dom';
+import { memo } from 'react';
 
-const UtilityPopup = () => {
+const UtilityPopup = memo(() => {
     const { isLogin, logout} = useUserStore();
     const navigate = useNavigate();
     return (
@@ -82,5 +83,5 @@ const UtilityPopup = () => {
             </div>
         </div>
     )
-}
+})
 export default UtilityPopup

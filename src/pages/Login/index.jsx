@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { Button, Input } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { useUserStore } from '@/store/useUserStore';
@@ -6,7 +6,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './login.module.css';
 import logo2 from '@/assets/logo2.png';
 
-const Login = () => {
+// memo路由切换时性能优化，避免父组件SubLayout重新渲染时被影响
+const Login = memo(() => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -85,6 +86,6 @@ const Login = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Login;

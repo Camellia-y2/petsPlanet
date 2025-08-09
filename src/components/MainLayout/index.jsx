@@ -1,6 +1,7 @@
 import {
     useEffect,
     useState,
+    memo,
 } from 'react';
 import {
     Tabbar,
@@ -28,7 +29,8 @@ const tabs = [
     { icon: <Friends />, title: '个人中心', path: '/profile'}
 ]
 
-const MainLayout = () => {
+// 只有在路由变化时才需要重新渲染
+const MainLayout = memo(() => {
     const [active, setActive] = useState(0)
     const navigate = useNavigate()
     const location = useLocation()
@@ -68,6 +70,6 @@ const MainLayout = () => {
             </Tabbar>
         </div>
     )
-}
+})
 
 export default MainLayout

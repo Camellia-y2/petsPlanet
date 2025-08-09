@@ -5,6 +5,7 @@ import logo from '@/assets/logo.png'
 import { Search,WapNav } from '@react-vant/icons'
 import UtilityPopup from '@/components/UtilityPopup'
 import { useState, useEffect, useRef } from 'react'
+import { memo } from 'react'
 
 const HeaderBox = () => {
     const navigate = useNavigate(); // 使用 useNavigate 钩子
@@ -69,4 +70,4 @@ const HeaderBox = () => {
     )
 }
 
-export default HeaderBox;
+export default memo(HeaderBox);
