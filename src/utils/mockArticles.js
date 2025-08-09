@@ -55,10 +55,24 @@ const AUTHORS = [
 const randomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 
+// 预定义的文章图片URL数组（使用稳定的公共图片，与幻灯片不重复）
+const ARTICLE_IMAGES = [
+  'https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80', // 猫咪特写
+  'https://images.unsplash.com/photo-1477884213360-7e9d7dcc1e48?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80', // 小狗特写
+  'https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80', // 猫咪玩耍
+  'https://images.unsplash.com/photo-1561037404-61cd46aa615b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80', // 狗狗玩耍
+  'https://images.unsplash.com/photo-1511044568932-338cba0ad803?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80', // 猫咪睡觉
+  'https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80', // 狗狗睡觉
+  'https://images.unsplash.com/photo-1495360010541-f48722b34f7d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80', // 猫咪看窗外
+  'https://images.unsplash.com/photo-1546527868-ccb7ee7dfa6a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80', // 狗狗看窗外
+  'https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80', // 猫咪吃东西
+  'https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=200&q=80'  // 狗狗吃东西
+];
+
 // 生成随机图片URL
 const generateRandomImageUrl = () => {
-  // 使用picsum.photos服务生成随机图片
-  return `https://picsum.photos/300/200?random=${randomInt(1, 1000)}`;
+  // 从预定义图片中随机选择一张
+  return ARTICLE_IMAGES[Math.floor(Math.random() * ARTICLE_IMAGES.length)];
 };
 
 // 生成一条模拟文章（只返回数据，不包含 JSX）
