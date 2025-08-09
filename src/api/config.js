@@ -3,8 +3,10 @@ import axios from 'axios';
 // 创建axios实例
 // 根据环境判断使用哪个baseURL
 const isProduction = window.location.hostname !== 'localhost';
+const isVercel = window.location.hostname.includes('vercel.app');
+
 axios.defaults.baseURL = isProduction 
-  ? '/petsPlanet'  // 生产环境使用相对路径
+  ? (isVercel ? '' : '/petsPlanet')  // Vercel 环境使用空路径，其他生产环境使用相对路径
   : 'http://localhost:5173/petsPlanet'; // 开发环境
 
 // 请求拦截器
