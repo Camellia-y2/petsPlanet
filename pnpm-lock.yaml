@@ -29,6 +29,9 @@ importers:
       mitt:
         specifier: ^3.0.1
         version: 3.0.1
+      openai:
+        specifier: ^5.12.2
+        version: 5.12.2
       react:
         specifier: ^19.1.0
         version: 19.1.1
@@ -1273,6 +1276,18 @@ packages:
   on-finished@2.3.0:
     resolution: {integrity: sha512-ikqdkGAAyf/X/gPhXGvfgAytDZtDbr+bkNUJ0N9h5MI/dmdgCs3l6hoHrcUv41sRKew3jIwrp4qQDXiK99Utww==}
     engines: {node: '>= 0.8'}
+
+  openai@5.12.2:
+    resolution: {integrity: sha512-xqzHHQch5Tws5PcKR2xsZGX9xtch+JQFz5zb14dGqlshmmDAFBFEWmeIpf7wVqWV+w7Emj7jRgkNJakyKE0tYQ==}
+    hasBin: true
+    peerDependencies:
+      ws: ^8.18.0
+      zod: ^3.23.8
+    peerDependenciesMeta:
+      ws:
+        optional: true
+      zod:
+        optional: true
 
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
@@ -3004,6 +3019,8 @@ snapshots:
   on-finished@2.3.0:
     dependencies:
       ee-first: 1.1.1
+
+  openai@5.12.2: {}
 
   optionator@0.9.4:
     dependencies:

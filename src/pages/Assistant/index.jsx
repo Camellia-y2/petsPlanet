@@ -6,7 +6,6 @@ import useTitle from '@/hooks/useTitle';
 import styles from './assistant.module.css'
 import { UserO, Smile, GuideO, DeleteO } from '@react-vant/icons'
 import { BackTop } from '@react-vant/icons';
-import { useNavigate } from 'react-router-dom';
 import formatMarkdownToText from '@/utils/formatMarkdown';
 
 // 本地存储键名
@@ -93,11 +92,7 @@ const Assistant = () => {
 
     const handleSubmit = async () => {
         if(text.trim() === ''){
-            Toast({
-                message: '请输入问题',
-                icon: <Smile />,
-                position: 'top',
-            });
+            console.log('请输入问题');
             return;
         }
         
@@ -115,11 +110,11 @@ const Assistant = () => {
         setMessages((prev) => [...prev, userMsg]);
         
         try {
-            // 发送请求获取AI回复
+            // 发送请求获取AI回复，使用OpenAI的chat函数
             const newMessage = await chat([{
                 role: 'user',
                 content: userMessage
-            }]);
+            }], 'openai');
             
             // 添加AI回复
             const aiMsg = {
@@ -136,10 +131,7 @@ const Assistant = () => {
             
             // 如果是错误响应，显示提示
             if (newMessage.code !== 0) {
-                Toast({
-                    message: '请求失败，使用了备用回复',
-                    position: 'top',
-                });
+                console.log('请求失败，使用了备用回复');
             }
         } catch (error) {
             console.error('聊天请求失败:', error);
@@ -153,10 +145,7 @@ const Assistant = () => {
             
             setMessages((prev) => [...prev, errorMsg]);
             
-            Toast({
-                message: '发送失败，请重试',
-                position: 'top',
-            });
+            console.log('发送失败，请重试');
         } finally {
             setIsSending(false);
         }
