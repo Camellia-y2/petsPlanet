@@ -16,7 +16,7 @@ const UtilityPopup = memo(() => {
                 <div className={styles.Title}>
                     设置
                 </div>
-                <div className={styles.Item}>
+                <div className={styles.Item} onClick={() => {navigate('/profile')}}>
                     个人中心
                 </div>
                 {

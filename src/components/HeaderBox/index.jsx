@@ -12,10 +12,19 @@ const HeaderBox = () => {
     const [showUtilityPopup, setShowUtilityPopup] = useState(false) // 展示功能弹窗
     const popupRef = useRef(null) // 获取弹窗元素
 
+    // 创建一个引用来存储导航图标的容器元素
+    const navIconContainerRef = useRef(null);
+
     // 点击空白处关闭弹窗
     const handleClickOutside = (e) => {
-        // 如果弹窗显示且点击目标不在弹窗内
-        if (showUtilityPopup && popupRef.current && !popupRef.current.contains(e.target)) {
+        // 如果弹窗显示且点击目标不在弹窗内且不是导航图标容器
+        if (
+            showUtilityPopup && 
+            popupRef.current && 
+            !popupRef.current.contains(e.target) &&
+            navIconContainerRef.current && 
+            !navIconContainerRef.current.contains(e.target)
+        ) {
             setShowUtilityPopup(false)
         }
     }
@@ -49,13 +58,14 @@ const HeaderBox = () => {
                             },500);
                         }}
                     />
-                    <WapNav  className={styles.wapNavIcon} onClick={()=>{
-                        if(!showUtilityPopup){
-                            setShowUtilityPopup(true)
-                        }else{
-                            setShowUtilityPopup(false)
-                        }
-                    }}/>
+                    <div ref={navIconContainerRef}>
+                        <WapNav  
+                            className={styles.wapNavIcon} 
+                            onClick={()=>{
+                                showUtilityPopup ? setShowUtilityPopup(false) : setShowUtilityPopup(true);
+                            }}
+                        />
+                    </div>
                 </div>
             </header>
             {/* 弹窗 */}
