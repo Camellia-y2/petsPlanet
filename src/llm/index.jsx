@@ -19,7 +19,30 @@ export const chat = async (
                 messages,
                 stream: false
             })
-        })
+        });
+        
+        if (!response.ok) {
+            // 处理不同的HTTP错误状态码
+            if (response.status === 402) {
+                return {
+                    code: 1,
+                    data: {
+                        role: 'assistant',
+                        content: '抱歉，API密钥需要付费或已过期，请联系管理员更新API密钥。'
+                    }
+                };
+            }
+            
+            const errorData = await response.json().catch(() => ({}));
+            return {
+                code: 1,
+                data: {
+                    role: 'assistant',
+                    content: `请求失败 (${response.status}): ${errorData.error?.message || '未知错误'}`
+                }
+            };
+        }
+        
         const data = await response.json();
         return {
             code: 0,
@@ -27,12 +50,16 @@ export const chat = async (
                 role: 'assistant',
                 content: data.choices[0].message.content
             }
-        }
+        };
     } catch (error) {
+        console.error('API请求错误:', error);
         return {
-            code: 0,
-            msg: '出错了...'
-        }
+            code: 1,
+            data: {
+                role: 'assistant',
+                content: '网络请求失败，请检查您的网络连接或稍后再试。'
+            }
+        };
     }
 }
 

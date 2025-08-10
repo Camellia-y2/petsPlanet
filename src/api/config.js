@@ -7,7 +7,7 @@ const isVercel = window.location.hostname.includes('vercel.app');
 
 axios.defaults.baseURL = isProduction 
   ? (isVercel ? '' : '/petsPlanet')  // Vercel 环境使用空路径，其他生产环境使用相对路径
-  : 'http://localhost:5173/petsPlanet'; // 开发环境
+  : `http://${window.location.hostname}:${window.location.port}/petsPlanet`; // 开发环境，支持所有本地端口
 
 // 导出环境变量，供其他模块使用
 export const envConfig = {

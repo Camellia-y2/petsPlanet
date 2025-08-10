@@ -68,7 +68,6 @@ const Assistant = () => {
     const [isSending, setIsSending] = useState(false);
     const [showClearModal, setShowClearModal] = useState(false);
     
-    
     // 自动滚动到最新消息
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -134,8 +133,26 @@ const Assistant = () => {
             }
             
             setMessages((prev) => [...prev, aiMsg]);
+            
+            // 如果是错误响应，显示提示
+            if (newMessage.code !== 0) {
+                Toast({
+                    message: '请求失败，使用了备用回复',
+                    position: 'top',
+                });
+            }
         } catch (error) {
             console.error('聊天请求失败:', error);
+            
+            // 添加错误消息作为AI回复
+            const errorMsg = {
+                id: generateId(),
+                role: 'assistant',
+                content: '抱歉，服务暂时不可用，请稍后再试。'
+            };
+            
+            setMessages((prev) => [...prev, errorMsg]);
+            
             Toast({
                 message: '发送失败，请重试',
                 position: 'top',
@@ -181,48 +198,56 @@ const Assistant = () => {
             <div className={styles.messagesContainer}>
                 <div className={styles.messages}>
                     {messages.map((item, index) => (
-                            <div 
-                                key={index} 
-                                className={styles.messageWrapper}
-                                style={{
-                                    justifyContent: item.role === 'user' ? 'flex-end' : 'flex-start'
-                                }}
-                            >
-                                {item.role !== 'user' && (
-                                    <div className={`${styles.avatar} ${styles.assistantAvatar}`}>
-                                        <span className={styles.aiText}>AI</span>
-                                    </div>
-                                )}
-                                
-                                <div 
-                                    className={
-                                        item.role === 'user' ? styles.messageRight : styles.messageLeft
-                                    }
-                                >
-                                    <span className={styles.messageContent}>
-                                        {item.role === 'assistant' 
-                                            ? formatMarkdownToText(item.content)
-                                            : item.content
-                                        }
-                                    </span>
+                        <div 
+                            key={index} 
+                            className={styles.messageWrapper}
+                            style={{
+                                justifyContent: item.role === 'user' ? 'flex-end' : 'flex-start'
+                            }}
+                        >
+                            {item.role !== 'user' && (
+                                <div className={`${styles.avatar} ${styles.assistantAvatar}`}>
+                                    <span className={styles.aiText}>AI</span>
                                 </div>
-                                
-                                {item.role === 'user' && (
-                                    <div className={`${styles.avatar} ${styles.userAvatar}`}>
-                                        <UserO />
-                                    </div>
-                                )}
+                            )}
+                            
+                            <div 
+                                className={
+                                    item.role === 'user' ? styles.messageRight : styles.messageLeft
+                                }
+                            >
+                                <span className={styles.messageContent}>
+                                    {item.role === 'assistant' 
+                                        ? formatMarkdownToText(item.content)
+                                        : item.content
+                                    }
+                                </span>
                             </div>
-                        ))}
-                        
-                        {isSending && (
-                            <div className={styles.loadingContainer}>
-                                <Loading type='spinner' color='#ff9a76' size='18px' />
+                            
+                            {item.role === 'user' && (
+                                <div className={`${styles.avatar} ${styles.userAvatar}`}>
+                                    <UserO />
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                    
+                    {isSending && (
+                        <div className={styles.messageWrapper} style={{ justifyContent: 'flex-start' }}>
+                            <div className={`${styles.avatar} ${styles.assistantAvatar}`}>
+                                <span className={styles.aiText}>AI</span>
                             </div>
-                        )}
-                        
-                        <div ref={messagesEndRef} />
-                    </div>
+                            <div className={styles.messageLeft}>
+                                <div className={styles.loadingContainer}>
+                                    <Loading type='spinner' color='#ff9a76' size='18px' />
+                                    <span className={styles.loadingText}>思考中...</span>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                    
+                    <div ref={messagesEndRef} />
+                </div>
                 
                 <div className={styles.inputArea}>
                     <input
